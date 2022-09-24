@@ -3,7 +3,7 @@ function showInMap() {
 }
 
 function execClick(){
-  window[0].app.canvasClicked({"button": 2, "clientX": 430, "clientY": 450});
+  window[0].app.canvasClicked({"button": 2, "clientX": 384, "clientY": 362});
 }
 
 function searchXandYandZ(numberOfCalss) {
@@ -48,8 +48,8 @@ function onChangeSelectClass(){
   var ClassNumber = $("#selected-classes option:selected").val();
   var x_url, y_url, z_url;
   var cordArray =  searchXandYandZ(ClassNumber);
-  x_url = cordArray[0] + 0.00001607285285;
-  y_url = cordArray[1] + (-0.000359146898166);
+  x_url = cordArray[0];
+  y_url = cordArray[1];
   z_url = cordArray[2];
   var newUrl = "#cx=" + x_url + "&cy=" + y_url + "&cz=0.00014553479775117968&tx=34.773&ty=32.015&tz=0.000";
   newUrl = currnetUrl.split("#")[0] + newUrl;
