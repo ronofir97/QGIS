@@ -1,0 +1,22 @@
+
+body {
+    text-align: center; 
+    vertical-align: middle;
+    background:linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.4)), url(/bgk/bgk.jpg);
+    background-repeat: no-repeat;
+    
+}
+
+.all-drop-item{
+    margin-top: 2%;
+}
+
+.map-css{
+    margin-left: 1%;
+}
+.btn-css{
+    width: 200px;
+}
+.title-css{
+    margin-bottom: 1%;
+}
