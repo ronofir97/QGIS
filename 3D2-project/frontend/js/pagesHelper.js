@@ -1,14 +1,22 @@
 function showInMap() {
-  execClick();
+  // 
+  // window[0].app.scene.userData.baseExtent = { cx: 33.774, cy: 32.01498583209288, width: 0.004087093214124593, height: 0.004087093214124593 };
+  // document.getElementById('map-iframe').contentWindow.location.reload();
+  //window[0].app.loadJSONObject(mainObject);
+  var x = 34.77312278073771;
+  var y = 32.014033975438636; 
+  var test = changeloc(x, y);
+ 
+  window[0].app.loadJSONObject(test);
 }
 
-function execClick(){
-  window[0].app.canvasClicked({"button": 2, "clientX": 384, "clientY": 362});
+function execClick() {
+  window[0].app.canvasClicked({ "button": 2, "clientX": 384, "clientY": 241.5 });
 }
 
 function searchXandYandZ(numberOfCalss) {
   var allLayers = mainObject.layers;
-  var cord ;
+  var cord;
   allLayers.forEach((element, index) => {
     lengthOfElements = allLayers.length - 1;
     if (index < lengthOfElements) {
@@ -21,6 +29,32 @@ function searchXandYandZ(numberOfCalss) {
   });
   return cord;
 }
+
+function changeloc(new_cx, new_cy) {
+  var NewBaseExtent = { cx: new_cx, cy: new_cy, width: 0.004087093214124593, height: 0.004087093214124593,rotation: 0 };
+  var currentBase = window[0].app.scene.userData.baseExtent;
+  var dx = currentBase.cx - new_cx;
+  var dy = currentBase.cy - new_cy;
+  var newMainJs = mainObject;
+  newMainJs.properties.baseExtent = NewBaseExtent;
+  var allLayers = mainObject.layers;
+  allLayers.forEach((element, index) => {
+    lengthOfElements = allLayers.length - 1;
+    if (index < lengthOfElements) {
+      element.data.blocks[0].features.forEach(elem => {
+        elem.geom.centroids[0].cx += dx;
+        elem.geom.centroids[0].cy += dy;
+        var edit = elem.geom.polygons[0];
+          edit[0].forEach(newgwomElement => {
+            newgwomElement[0] -= dx;
+            newgwomElement[1] -= dy;
+        });
+      });
+    }
+  })
+  return newMainJs;
+}
+
 
 function selectBuildin() {
   $("#selected-classes").empty();
@@ -43,11 +77,11 @@ function createArrayBuilding(numberOfBuilding) {
   return allRoomsOfBuilding;
 }
 
-function onChangeSelectClass(){
+function onChangeSelectClass() {
   var currnetUrl = $('#map-iframe').attr('src');
   var ClassNumber = $("#selected-classes option:selected").val();
   var x_url, y_url, z_url;
-  var cordArray =  searchXandYandZ(ClassNumber);
+  var cordArray = searchXandYandZ(ClassNumber);
   x_url = cordArray[0];
   y_url = cordArray[1];
   z_url = cordArray[2];
