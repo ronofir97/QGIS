@@ -20,3 +20,10 @@ body {
 .title-css{
     margin-bottom: 1%;
 }
+
+#textareaMoreInfo{
+   background-color: rgb(31, 31, 31);
+   color: antiquewhite;
+   border-radius: 25px;
+   text-align:initial;
+}

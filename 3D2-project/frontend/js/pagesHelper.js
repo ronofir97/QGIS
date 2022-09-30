@@ -1,5 +1,11 @@
 //#region User functional functions and Events
 
+$(document).ready(function() {
+  var msg = "ניתן לבצע במפה קירוב לאחור ולפנים על ידי השימוש בגלגת העכבר ולאחר מכן לחיצה על הלחצן השמאלי שבעכבר. (Zoom-in, Zoom-out)"
+  $("#textareaMoreInfo").attr("disabled","disabled");
+  $("#textareaMoreInfo").attr("value", msg);
+});
+
 function showInMap() {
   execClick();
 }
