@@ -61,6 +61,7 @@ function onChangeSelectClass() {
 function selectClass() {
   var buildingNum = $("#selectB option:selected").val();
   classesArray = createArrayBuilding(buildingNum);
+  $("#selected-classes").empty();
   classesArray.forEach(element => {
     $("#selected-classes").append(new Option(element, element));
   })
